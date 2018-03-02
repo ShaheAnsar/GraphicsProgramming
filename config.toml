@@ -1,0 +1,15 @@
+baseURL = "https://www.learngfxprogramming.cf"
+languageCode = "en-us"
+title = "Learn Graphics Programming"
+theme = "purehugo"
+sectionPagesMenu = "main"
+pygmentsuseclasses=true
+copyright = "&copy; Copyright 2018 M. Shahe Ansar"
+[params.author]
+name = "M. Shahe Ansar"
+gitlab = "shaheansar1233"
+email = "shaheansar123323@gmail.com"
+[params]
+githubName = "shaheansar"
+description = "A Blog where I share stuff about graphics programming"
+
