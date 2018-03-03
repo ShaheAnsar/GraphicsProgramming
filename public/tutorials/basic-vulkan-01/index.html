@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.37" />
+
+  <title>Basic Vulkan Programming - 01 &middot; Learn Graphics Programming</title>
+
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
+
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+
+  <link rel="shortcut icon" href="https://www.learngfxprogramming.cf/img/favicon.ico" type="image/x-icon" />
+
+  
+    <link rel="stylesheet" href="https://www.learngfxprogramming.cf/css/syntax.css">
+  
+  
+
+</head>
+
+
+<body>
+<div id="layout">
+
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
+
+  
+
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/">Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/tutorials">Tutorials</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/shaheansar" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://gitlab.com/shaheansar123323" target="_blank"><i class="fa fa-gitlab fa-fw"></i>GitLab</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
+</div>
+
+
+  <div>
+  <div class="small-print">
+    <small>&copy; Copyright 2018 M. Shahe Ansar</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
+
+</div>
+
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Basic Vulkan Programming - 01</h1>
+  <h2></h2>
+</div>
+<div class="content">
+  
+
+<h1 id="starting-out-with-vulkan">Starting out with Vulkan</h1>
+
+<p>In the following weeks I&rsquo;ll guide you through the basics of vulkan programming.</p>
+
+<p>In this particular post, we&rsquo;ll be talking about how to set everything up. It&rsquo;ll be only in the next post that we&rsquo;ll actually write any code.</p>
+
+<p>With that said, let&rsquo;s get to it.</p>
+
+<h2 id="setting-everything-up">Setting Everything Up</h2>
+
+<p>To make a vulkan application, we need a few things -</p>
+
+<ul>
+<li>A Window handling library</li>
+<li>A Vulkan SDK (You can do without this, and I encourage you to if learning, but don&rsquo;t do this on an actual project)</li>
+<li>A Vector Math library</li>
+<li>An Image library</li>
+</ul>
+
+<p>We&rsquo;ll be using GLFW, the LunarG SDK, GLM and stb_image for all of these.</p>
+
+<h3 id="installing-glfw-glm-and-the-sdk">Installing GLFW, GLM and the SDK</h3>
+
+<h4 id="linux">Linux</h4>
+
+<p>Depends on your distro. I&rsquo;ll list the two distro (archetypes?) that I&rsquo;ve had experience with -</p>
+
+<h5 id="arch-linux">Arch Linux</h5>
+
+<p><code>[sudo] pacman -S glfw-x11</code><br />
+If you&rsquo;re on wayland get the wayland counterpart.<br />
+<code>[sudo] pacman -S vulkan-devel</code><br />
+<code>[sudo] pacman -S glm</code></p>
+
+<h5 id="ubuntu-like">Ubuntu-like</h5>
+
+<p><code>[sudo] apt install libglfw3 libglfw3-dev</code><br />
+<code>[sudo] apt install libvulkan1</code><br />
+<code>[sudo] apt install libglm-dev</code></p>
+
+<h4 id="windows">Windows</h4>
+
+<p>Just download the files from -</p>
+
+<ul>
+<li><a href="http://www.glfw.org">GLFW&rsquo;s website</a></li>
+<li><a href="https://vulkan.lunarg.com/">LunarG&rsquo;s Website</a></li>
+<li><a href="https://glm.g-truc.net/0.9.8/index.html">GLM&rsquo;s Website</a><br /></li>
+</ul>
+
+<p>Then put the include files and lib files where you want,
+and then link to the libraries. Remember that the includes might differ depending on how you set your project up.<br />
+<br>
+<br>
+<br>
+As for stb_image, it&rsquo;s a <a href="https://github.com/nothings/stb/blob/master/stb_image.h">single header file</a>, it should be fairly easy
+to integrate in the project.
+<br>
+<br>
+<br>
+Now it&rsquo;s time to set everything up. Unfortunately, I won&rsquo;t be providing instructions for Windows, since I don&rsquo;t have it installed.
+I&rsquo;ll explain how to set up a meson build system for this project, however, and that supports generating VS project files. For more on installation, visit <a href="http://mesonbuild.com">this</a></p>
+
+<h3 id="getting-the-build-system-up-and-running">Getting the Build System up and running</h3>
+
+<p>First make a directory wherever you want for this project.
+Now create a meson.build file in root directory of the project.</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">project</span><span class="p">(</span><span class="s1">&#39;NAME OF PROJECT&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">)</span>
+<span class="n">src</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;src/main.cpp&#39;</span><span class="o">]</span>
+<span class="n">include_dirs</span>  <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;include/&#39;</span><span class="o">]</span>
+<span class="n">deps</span> <span class="o">=</span> <span class="o">[</span><span class="n">dependency</span><span class="p">(</span><span class="s1">&#39;vulkan&#39;</span><span class="p">),</span> <span class="n">dependency</span><span class="p">(</span><span class="s1">&#39;glfw3&#39;</span><span class="p">)</span><span class="o">]</span>
+<span class="n">executable</span><span class="p">(</span><span class="s1">&#39;NAME OF BUILT EXECUTABLE&#39;</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span>
+	<span class="ss">dependencies</span><span class="p">:</span> <span class="n">deps</span><span class="p">,</span> 
+	<span class="ss">include_directories</span><span class="p">:</span> <span class="n">include_directories</span><span class="p">(</span><span class="n">include_dirs</span><span class="p">))</span></code></pre></div>
+<p>This is a very barebones build file, but that&rsquo;s all we need for this series</p>
+
+<p>We&rsquo;ll also create a very basic main.cpp file in the <code>src/</code> directory to test if everythin is setup fine-</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define GLFW_INCLUDE_VULKAN
+</span><span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> 
+<span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Now in the source directory, type the following-</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">meson build
+<span class="nb">cd</span> build
+ninja</code></pre></div>
+<p>And you should have a barebones executable in the build folder. And that&rsquo;s all for today.<br />
+In the next post we&rsquo;ll learn how to set up a vulkan instance. Till then, ciao.</p>
+
+</div>
+
+</div>
+</div>
+<script src="https://www.learngfxprogramming.cf/js/ui.js"></script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-115000283-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+</body>
+</html>
+

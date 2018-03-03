@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Learn Graphics Programming</title>
+    <link>https://www.learngfxprogramming.cf/tutorials/</link>
+    <description>Recent content in Tutorials on Learn Graphics Programming</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Copyright 2018 M. Shahe Ansar</copyright>
+    <lastBuildDate>Sat, 03 Mar 2018 00:38:11 +0530</lastBuildDate>
+    
+	<atom:link href="https://www.learngfxprogramming.cf/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic Vulkan 02</title>
+      <link>https://www.learngfxprogramming.cf/tutorials/basic-vulkan-02/</link>
+      <pubDate>Sat, 03 Mar 2018 00:38:11 +0530</pubDate>
+      
+      <guid>https://www.learngfxprogramming.cf/tutorials/basic-vulkan-02/</guid>
+      <description>Understanding what an instance is In vulkan, the main object you&amp;rsquo;ll be interacting with is an instance. The instance is similar to Open GL&amp;rsquo;s concept of contexts. You can think of it as an object that holds details that tells vulkan that we&amp;rsquo;re a vulkan application. In reality, it simply holds a bunch of state for the vulkan API. Creating it is the first step to creating any vulkan application.</description>
+    </item>
+    
+    <item>
+      <title>Basic Vulkan Programming - 01</title>
+      <link>https://www.learngfxprogramming.cf/tutorials/basic-vulkan-01/</link>
+      <pubDate>Fri, 02 Mar 2018 12:54:05 +0530</pubDate>
+      
+      <guid>https://www.learngfxprogramming.cf/tutorials/basic-vulkan-01/</guid>
+      <description>Starting out with Vulkan In the following weeks I&amp;rsquo;ll guide you through the basics of vulkan programming.
+In this particular post, we&amp;rsquo;ll be talking about how to set everything up. It&amp;rsquo;ll be only in the next post that we&amp;rsquo;ll actually write any code.
+With that said, let&amp;rsquo;s get to it.
+Setting Everything Up To make a vulkan application, we need a few things -
+ A Window handling library A Vulkan SDK (You can do without this, and I encourage you to if learning, but don&amp;rsquo;t do this on an actual project) A Vector Math library An Image library  We&amp;rsquo;ll be using GLFW, the LunarG SDK, GLM and stb_image for all of these.</description>
+    </item>
+    
+  </channel>
+</rss>

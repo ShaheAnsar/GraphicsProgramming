@@ -1,7 +1,7 @@
 ---
 title: "Basic Vulkan 02"
 date: 2018-03-03T00:38:11+05:30
-draft: true
+draft: false
 ---
 # Understanding what an instance is
 In vulkan, the main object you'll be interacting with is an instance. The instance is similar to Open GL's concept of contexts.
