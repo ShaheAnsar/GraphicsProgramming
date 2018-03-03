@@ -46,7 +46,7 @@ namespace Game
 We can finally get to vulkan now. We'll keep that in another namespace called Gfx. So let's add two other files `src/gfx.hpp` and `src/gfx.cpp`  
 
 	
-`src/gfx.hpp`
+__`src/gfx.hpp`__
 ```cpp
 #define GLFW_VULKAN_INCLUDED //automatically loads all needed vulkan headers
 #include <GLFW/glfw3.h>
@@ -63,7 +63,7 @@ namespace Gfx
 	};
 };
 ```
-`src/gfx.cpp`
+__`src/gfx.cpp`__
 ```cpp
 #include "gfx.hpp"
 void Gfx::Renderer::init()
@@ -82,7 +82,7 @@ In the init function we want to initialize the instance. We also want to pass in
 In the deinit function, we'll have to destroy the data that's put into it.
 So let's get to it.  
 
-`Gfx::Renderer::init()`
+__`Gfx::Renderer::init()`__
 ```cpp
 VkApplicationInfo appInfo = {};
 appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -101,7 +101,7 @@ One __very__ important thing to keep in mind is that every structure you'll make
 will have the `sType` field. It, of course stands for `structure Type`. You __must__ always fill it up.  
 Now onto actually creating the instance-  
 
-`Gfx::Renderer::init()`
+__`Gfx::Renderer::init()`__
 ```cpp
 ... //Created the appInfo
 VkInstanceCreateInfo instanceCreateInfo = {};
@@ -134,7 +134,7 @@ the surface of a window.
 All of that though is for the next tutorial, where we'll enable a few extensions and layers.  
 
 Now let's fill up the `Gfx::Renderer::deinit()` function, which contains a single line of code-  
-`Gfx::Renderer::deinit()`
+__`Gfx::Renderer::deinit()`__
 ```cpp
 vkDestroyInstance(_instance, nullptr);// Also keep in mind that all functions that destroy objects also take
                                       // a parameter to an allocator. We don't need one, so it's a nullptr
@@ -142,12 +142,12 @@ vkDestroyInstance(_instance, nullptr);// Also keep in mind that all functions th
 
 Now let's set everything up.  
 We want to include all the needed headers and call the proper functions.  
-`main.cpp`  
+__`main.cpp`__  
 ```cpp
 #include "game.hpp"
 
 ```
-`game.hpp`
+__`game.hpp`__
 ```cpp
 #include "gfx.hpp
 ...
