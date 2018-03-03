@@ -205,63 +205,63 @@ But today, I&rsquo;ll be showing you how to create an instance.</p>
 
 <p>Let&rsquo;s continue from the last article&rsquo;s barebones main.cpp file.<br />
 We want to keep the clutter to a minimum. So let&rsquo;s put three functions within the main function</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> 
-<span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">int</span> 
+<span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">void</span>)
 
-<span class="p">{</span>
-	<span class="n">Game</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
-	<span class="n">Game</span><span class="o">::</span><span class="n">loop</span><span class="p">();</span>
-	<span class="n">Game</span><span class="o">::</span><span class="n">deinit</span><span class="p">();</span>
-<span class="p">}</span>
+{
+	Game<span style="color:#f92672">::</span>init();
+	Game<span style="color:#f92672">::</span>loop();
+	Game<span style="color:#f92672">::</span>deinit();
+}
 </code></pre></div>
 <p>We want to keep the main game code in a separate namespace, so that we&rsquo;ll not clash in the future with other libraries (That isn&rsquo;t going to happen
 in this series, but if you want to evolve this into a game engine, starting here is a good idea). Now let&rsquo;s define them in file called <code>game.hpp</code>.
 I&rsquo;m not going to be making a separate cpp file because the code will be fairly small.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">namespace</span> <span class="n">Game</span>
-<span class="p">{</span>
-	<span class="kt">void</span> <span class="n">init</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="c1">//init code
-</span><span class="c1"></span>	<span class="p">}</span>
-	<span class="kt">void</span> <span class="n">loop</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="c1">//loop code
-</span><span class="c1"></span>	<span class="p">}</span>
-	<span class="kt">void</span> <span class="n">deinit</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="c1">//deinit code
-</span><span class="c1"></span>	<span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#66d9ef">namespace</span> Game
+{
+	<span style="color:#66d9ef">void</span> init()
+	{
+		<span style="color:#75715e">//init code
+</span><span style="color:#75715e"></span>	}
+	<span style="color:#66d9ef">void</span> loop()
+	{
+		<span style="color:#75715e">//loop code
+</span><span style="color:#75715e"></span>	}
+	<span style="color:#66d9ef">void</span> deinit()
+	{
+		<span style="color:#75715e">//deinit code
+</span><span style="color:#75715e"></span>	}
+};
 </code></pre></div>
 <p>We can finally get to vulkan now. We&rsquo;ll keep that in another namespace called Gfx. So let&rsquo;s add two other files <code>src/gfx.hpp</code> and <code>src/gfx.cpp</code></p>
 
 <p><code>src/gfx.hpp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define GLFW_VULKAN_INCLUDED </span><span class="c1">//automatically loads all needed vulkan headers
-</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp">
-</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">namespace</span> <span class="n">Gfx</span>
-<span class="p">{</span>
-	<span class="k">class</span> <span class="nc">Renderer</span>
-	<span class="p">{</span>
-		<span class="n">VkInstance</span> <span class="n">_instance</span><span class="p">;</span> <span class="c1">// The underscore in front of it is my convention for a member variable
-</span><span class="c1"></span>	<span class="k">public</span><span class="o">:</span>
-		<span class="n">init</span><span class="p">();</span> <span class="c1">// I&#39;m doing this in a separate function to be explicit while using it. 
-</span><span class="c1"></span>			<span class="c1">//If you want to, you can use the constructor and destructor, and take advantage of RAII, but I prefer to do it this way
-</span><span class="c1"></span>		<span class="n">deinit</span><span class="p">();</span>
-	<span class="p">};</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#define GLFW_VULKAN_INCLUDED </span><span style="color:#75715e">//automatically loads all needed vulkan headers
+</span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;GLFW/glfw3.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">namespace</span> Gfx
+{
+	<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Renderer</span>
+	{
+		VkInstance _instance; <span style="color:#75715e">// The underscore in front of it is my convention for a member variable
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+		init(); <span style="color:#75715e">// I&#39;m doing this in a separate function to be explicit while using it. 
+</span><span style="color:#75715e"></span>			<span style="color:#75715e">//If you want to, you can use the constructor and destructor, and take advantage of RAII, but I prefer to do it this way
+</span><span style="color:#75715e"></span>		deinit();
+	};
+};
 </code></pre></div>
 <p><code>src/gfx.cpp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;gfx.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">void</span> <span class="n">Gfx</span><span class="o">::</span><span class="n">Renderer</span><span class="o">::</span><span class="n">init</span><span class="p">()</span>
-<span class="p">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gfx.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> Gfx<span style="color:#f92672">::</span>Renderer<span style="color:#f92672">::</span>init()
+{
 
-<span class="p">}</span>
+}
 
-<span class="kt">void</span> <span class="n">Gfx</span><span class="o">::</span><span class="n">Renderer</span><span class="o">::</span><span class="n">deinit</span><span class="p">()</span>
-<span class="p">{</span>
+<span style="color:#66d9ef">void</span> Gfx<span style="color:#f92672">::</span>Renderer<span style="color:#f92672">::</span>deinit()
+{
 
-<span class="p">}</span>
+}
 </code></pre></div>
 <h1 id="actually-coding">Actually coding</h1>
 
@@ -271,13 +271,13 @@ In the deinit function, we&rsquo;ll have to destroy the data that&rsquo;s put in
 So let&rsquo;s get to it.</p>
 
 <p><code>Gfx::Renderer::init()</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">VkApplicationInfo</span> <span class="n">appInfo</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="n">appInfo</span><span class="p">.</span><span class="n">sType</span> <span class="o">=</span> <span class="n">VK_STRUCTURE_TYPE_APPLICATION_INFO</span><span class="p">;</span>
-<span class="n">appInfo</span><span class="p">.</span><span class="n">pApplicationName</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;Name of our Application&#34;</span><span class="p">;</span>
-<span class="n">appInfo</span><span class="p">.</span><span class="n">applicationVersion</span> <span class="o">=</span> <span class="n">VK_MAKE_VERSION</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// Follows this format - (MAJOR, MINOR, PATCH)
-</span><span class="c1"></span><span class="n">appIngo</span><span class="p">.</span><span class="n">pEngineName</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;Engine Name&#34;</span><span class="p">;</span>
-<span class="n">appInfo</span><span class="p">.</span><span class="n">engineVersion</span> <span class="o">=</span> <span class="n">VK_MAKE_VERSION</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="n">appInfo</span><span class="p">.</span><span class="n">apiVersion</span> <span class="o">=</span> <span class="n">VK_API_VERSION_1_0</span><span class="p">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">VkApplicationInfo appInfo <span style="color:#f92672">=</span> {};
+appInfo.sType <span style="color:#f92672">=</span> VK_STRUCTURE_TYPE_APPLICATION_INFO;
+appInfo.pApplicationName <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Name of our Application&#34;</span>;
+appInfo.applicationVersion <span style="color:#f92672">=</span> VK_MAKE_VERSION(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>); <span style="color:#75715e">// Follows this format - (MAJOR, MINOR, PATCH)
+</span><span style="color:#75715e"></span>appIngo.pEngineName <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Engine Name&#34;</span>;
+appInfo.engineVersion <span style="color:#f92672">=</span> VK_MAKE_VERSION(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>);
+appInfo.apiVersion <span style="color:#f92672">=</span> VK_API_VERSION_1_0;
 </code></pre></div>
 <p>The above section is completely optional, but still good practice, since engine and game specific optimizations
 can be done by the driver for you engine (if it ever becomes big enough).<br />
@@ -289,20 +289,20 @@ will have the <code>sType</code> field. It, of course stands for <code>structure
 Now onto actually creating the instance-</p>
 
 <p><code>Gfx::Renderer::init()</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="p">...</span> <span class="c1">//Created the appInfo
-</span><span class="c1"></span><span class="n">VkInstanceCreateInfo</span> <span class="n">instanceCreateInfo</span> <span class="o">=</span> <span class="p">{};</span>
-<span class="n">instanceCreateinfo</span><span class="p">.</span><span class="n">sType</span> <span class="o">=</span> <span class="n">VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO</span><span class="p">;</span>
-<span class="n">instanceInfo</span><span class="p">.</span><span class="n">pApplicationInfo</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">appInfo</span><span class="p">;</span>
-<span class="n">instanceInfo</span><span class="p">.</span><span class="n">enabledLayerCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Debugging stuff. We&#39;ll get to this later
-</span><span class="c1"></span><span class="n">instanceInfo</span><span class="p">.</span><span class="n">enabledExtensionCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Again, we&#39;ll get to this later. I&#39;ll simply use || to represent that
-</span><span class="c1"></span><span class="n">instanceInfo</span><span class="p">.</span><span class="n">ppEnabledExtensionNames</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// ||
-</span><span class="c1"></span><span class="n">instanceInfo</span><span class="p">.</span><span class="n">ppEnabledLayerNames</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span> <span class="c1">// ||
-</span><span class="c1"></span>
-<span class="k">if</span><span class="p">(</span><span class="n">vkCreateInstance</span><span class="p">(</span><span class="o">&amp;</span><span class="n">instanceCreateInfo</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">_instance</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VK_SUCCESS</span><span class="p">)</span>
-<span class="p">{</span>
-	<span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;ERROR: Unable to create instance!!!&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-	<span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">... <span style="color:#75715e">//Created the appInfo
+</span><span style="color:#75715e"></span>VkInstanceCreateInfo instanceCreateInfo <span style="color:#f92672">=</span> {};
+instanceCreateinfo.sType <span style="color:#f92672">=</span> VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+instanceInfo.pApplicationInfo <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>appInfo;
+instanceInfo.enabledLayerCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// Debugging stuff. We&#39;ll get to this later
+</span><span style="color:#75715e"></span>instanceInfo.enabledExtensionCount <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#75715e">// Again, we&#39;ll get to this later. I&#39;ll simply use || to represent that
+</span><span style="color:#75715e"></span>instanceInfo.ppEnabledExtensionNames <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>; <span style="color:#75715e">// ||
+</span><span style="color:#75715e"></span>instanceInfo.ppEnabledLayerNames <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>; <span style="color:#75715e">// ||
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">if</span>(vkCreateInstance(<span style="color:#f92672">&amp;</span>instanceCreateInfo, <span style="color:#66d9ef">nullptr</span>, <span style="color:#f92672">&amp;</span>_instance) <span style="color:#f92672">!=</span> VK_SUCCESS)
+{
+	std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;ERROR: Unable to create instance!!!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+	exit(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+}
 </code></pre></div>
 <p>I&rsquo;ll first start explaining a few conventions in the vulkan library, then explain what I did -</p>
 
@@ -323,34 +323,34 @@ All of that though is for the next tutorial, where we&rsquo;ll enable a few exte
 
 <p>Now let&rsquo;s fill up the <code>Gfx::Renderer::deinit()</code> function, which contains a single line of code-<br />
 <code>Gfx::Renderer::deinit()</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">vkDestroyInstance</span><span class="p">(</span><span class="n">_instance</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">);</span><span class="c1">// Also keep in mind that all functions that destroy objects also take
-</span><span class="c1"></span>                                      <span class="c1">// a parameter to an allocator. We don&#39;t need one, so it&#39;s a nullptr
-</span><span class="c1"></span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">vkDestroyInstance(_instance, <span style="color:#66d9ef">nullptr</span>);<span style="color:#75715e">// Also keep in mind that all functions that destroy objects also take
+</span><span style="color:#75715e"></span>                                      <span style="color:#75715e">// a parameter to an allocator. We don&#39;t need one, so it&#39;s a nullptr
+</span><span style="color:#75715e"></span></code></pre></div>
 <p>Now let&rsquo;s set everything up.<br />
 We want to include all the needed headers and call the proper functions.<br />
 <code>main.cpp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;game.hpp&#34;</span><span class="cp">
-</span><span class="cp"></span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;game.hpp&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span></code></pre></div>
 <p><code>game.hpp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#include</span> <span class="cpf">&#34;gfx.hpp</span><span class="cp">
-</span><span class="cp"></span><span class="p">...</span>
-	<span class="n">Renderer</span> <span class="n">renderer</span><span class="p">;</span>
-	<span class="n">init</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">renderer</span><span class="p">.</span><span class="n">init</span><span class="p">();</span>
-	<span class="p">}</span>
-	<span class="p">...</span>
-	<span class="n">deinit</span><span class="p">()</span>
-	<span class="p">{</span>
-		<span class="n">renderer</span><span class="p">.</span><span class="n">deinit</span><span class="p">();</span>
-	<span class="p">}</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;gfx.hpp</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>...
+	Renderer renderer;
+	init()
+	{
+		renderer.init();
+	}
+	...
+	deinit()
+	{
+		renderer.deinit();
+	}
 </code></pre></div>
 <p>And that&rsquo;s it. We&rsquo;re almost done now. All that&rsquo;s left is modifying the <code>meson.build</code> file.</p>
 
 <h1 id="modifying-meson-build">Modifying meson.build</h1>
 
 <p>Open up the meson.build file and change the following variables like this -</p>
-<div class="highlight"><pre class="chroma"><code class="language-ruby`" data-lang="ruby`">src = [&#39;src/main.cpp&#39;, &#39;src/gfx.cpp&#39;]</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby`" data-lang="ruby`">src = [&#39;src/main.cpp&#39;, &#39;src/gfx.cpp&#39;]</code></pre></div>
 <p>Now, go to the build directory and run <code>ninja</code>. You shouldn&rsquo;t get any errors and have a compiled project
 that does nothing for now. Hey, at least we have progress.<br />
 On my next post (which will be pretty big, I think) we&rsquo;ll talk about layers and extensions.<br />

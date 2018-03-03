@@ -3,8 +3,8 @@ languageCode = "en-us"
 title = "Learn Graphics Programming"
 theme = "blackburn"
 sectionPagesMenu = "main"
-pygmentsUseClasses = true
 pygmentsCodeFences = true
+pygmentsStyle = "colorful"
 copyright = "&copy; Copyright 2018 M. Shahe Ansar"
 Paginate = 10
 
