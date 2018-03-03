@@ -1,93 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Vulkan Programming - 01 &middot; Learn Graphics Programming</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="generator" content="Hugo 0.37" />
 
-    <meta name="description" content="">
+  <title>Basic Vulkan Programming - 01 &middot; Learn Graphics Programming</title>
 
-    <meta name="generator" content="Hugo 0.37" />
-    <meta name="twitter:card" content="summary">
-    
-    <meta name="twitter:title" content="Basic Vulkan Programming - 01 &middot; Learn Graphics Programming">
-    <meta name="twitter:description" content="">
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css">
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Basic Vulkan Programming - 01 &middot; Learn Graphics Programming">
-    <meta property="og:description" content="">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-old-ie-min.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css">
+  <!--<![endif]-->
 
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+  <link rel="stylesheet" href="/css/side-menu.css">
+  <!--<![endif]-->
 
-    <link rel="stylesheet" href="https://www.learngfxprogramming.cf/css/all.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/blackburn.css">
 
-    <link rel="alternate" type="application/rss+xml" title="Learn Graphics Programming" href="https://www.learngfxprogramming.cf/index.xml" />
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  
+  
+
+  
+
+  <link rel="shortcut icon" href="https://www.learngfxprogramming.cf/img/favicon.ico" type="image/x-icon" />
+
+  
+    <link rel="stylesheet" href="https://www.learngfxprogramming.cf/css/syntax.css">
+  
+  
+
 </head>
+
+
 <body>
+<div id="layout">
 
+  
+<a href="#menu" id="menuLink" class="menu-link">
+  
+  <span></span>
+</a>
+<div id="menu">
 
-<div id="layout" class="pure-g">
-    <div class="sidebar pure-u-1 pure-u-md-1-4">
-    <div class="header">
-        <hgroup>
-            <h1 class="brand-title"><a href="https://www.learngfxprogramming.cf">Learn Graphics Programming</a></h1>
-            <h2 class="brand-tagline"> A Blog where I share stuff about graphics programming </h2>
-        </hgroup>
+  
 
-        <nav class="nav">
-            <ul class="nav-list">
-                
-                
-                <li class="nav-item">
-                    <a class="pure-button" href="https://github.com/shaheansar">
-                        <i class="fa fa-github-alt"></i> Github
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a class="pure-button" href="https://www.learngfxprogramming.cf/index.xml">
-                        <i class="fa fa-rss"></i> rss
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+  <div class="pure-menu">
+    <ul class="pure-menu-list">
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/">Home</a>
+      
+        </li>
+      
+      
+        <li class="pure-menu-item">
+          <a class="pure-menu-link" href="/tutorials">Tutorials</a>
+      
+        </li>
+      
+    </ul>
+  </div>
+
+  <div class="pure-menu social">
+  <ul class="pure-menu-list">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://github.com/shaheansar" target="_blank"><i class="fa fa-github-square fa-fw"></i>GitHub</a>
+    </li>
+    
+
+    
+    <li class="pure-menu-item">
+      <a class="pure-menu-link" href="https://gitlab.com/shaheansar123323" target="_blank"><i class="fa fa-gitlab fa-fw"></i>GitLab</a>
+    </li>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+  </ul>
 </div>
 
 
-    <div class="content pure-u-1 pure-u-md-3-4">
-        <div>
-            
-            <div class="posts">
-                <h1 class="content-subhead">02 Mar 2018, 12:54</h1>
-                <section class="post">
-                    <header class="post-header">
+  <div>
+  <div class="small-print">
+    <small>&copy; Copyright 2018 M. Shahe Ansar</small>
+  </div>
+  <div class="small-print">
+    <small>Built with&nbsp;<a href="https://gohugo.io/" target="_blank">Hugo</a></small>
+    <small>Theme&nbsp;<a href="https://github.com/yoshiharuyamashita/blackburn" target="_blank">Blackburn</a></small>
+  </div>
+</div>
 
-                        <a href="https://www.learngfxprogramming.cf/tutorials/basic-vulkan-01/" class="post-title">Basic Vulkan Programming - 01</a>
+</div>
 
-                        <p class="post-meta">
-                            
-                            
-                        </p>
-                    </header>
-                    
-                    <div class="post-share">
-                        <div class="post-share-links">
-                            <h4 style="">Share</h4>
-                            
-                            
-                            
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="post-description">
-                        
+
+  <div id="main">
+
+
+<div class="header">
+  <h1>Basic Vulkan Programming - 01</h1>
+  <h2></h2>
+</div>
+<div class="content">
+  
 
 <h1 id="starting-out-with-vulkan">Starting out with Vulkan</h1>
 
@@ -156,65 +259,55 @@ I&rsquo;ll explain how to set up a meson build system for this project, however,
 
 <p>First make a directory wherever you want for this project.
 Now create a meson.build file in root directory of the project.</p>
-
-<pre><code class="language-ruby`">project('NAME OF PROJECT', 'cpp')
-src = ['src/main.cpp']
-include_dirs  = ['include/']
-deps = [dependency('vulkan'), dependency('glfw3')]
-executable('NAME OF BUILT EXECUTABLE', src, dependencies: deps, include_directories: include_directories(include_dirs))
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">project</span><span class="p">(</span><span class="s1">&#39;NAME OF PROJECT&#39;</span><span class="p">,</span> <span class="s1">&#39;cpp&#39;</span><span class="p">)</span>
+<span class="n">src</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;src/main.cpp&#39;</span><span class="o">]</span>
+<span class="n">include_dirs</span>  <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;include/&#39;</span><span class="o">]</span>
+<span class="n">deps</span> <span class="o">=</span> <span class="o">[</span><span class="n">dependency</span><span class="p">(</span><span class="s1">&#39;vulkan&#39;</span><span class="p">),</span> <span class="n">dependency</span><span class="p">(</span><span class="s1">&#39;glfw3&#39;</span><span class="p">)</span><span class="o">]</span>
+<span class="n">executable</span><span class="p">(</span><span class="s1">&#39;NAME OF BUILT EXECUTABLE&#39;</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span>
+	<span class="ss">dependencies</span><span class="p">:</span> <span class="n">deps</span><span class="p">,</span> 
+	<span class="ss">include_directories</span><span class="p">:</span> <span class="n">include_directories</span><span class="p">(</span><span class="n">include_dirs</span><span class="p">))</span></code></pre></div>
 <p>This is a very barebones build file, but that&rsquo;s all we need for this series</p>
 
 <p>We&rsquo;ll also create a very basic main.cpp file in the <code>src/</code> directory to test if everythin is setup fine-</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="cp">#define GLFW_INCLUDE_VULKAN
+</span><span class="cp">#include</span> <span class="cpf">&lt;GLFW/glfw3.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> 
+<span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
-<pre><code class="language-cpp`">#define GLFW_INCLUDE_VULKAN
-#include &lt;GLFW/glfw3.h&gt;
-
-int main(void)
-{
-	return 0;
-}
-</code></pre>
-
+<span class="p">{</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Now in the source directory, type the following-</p>
-
-<pre><code>meson build
-cd build
-ninja
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">meson build
+<span class="nb">cd</span> build
+ninja</code></pre></div>
 <p>And you should have a barebones executable in the build folder. And that&rsquo;s all for today.<br />
 In the next post we&rsquo;ll learn how to set up a vulkan instance. Till then, ciao.</p>
 
-                    </div>
-                    
-                </section>
-            </div>
-            <div class="footer">
-    <div class="pure-menu pure-menu-horizontal pure-menu-open">
-        <ul>
-            <li>Powered by <a class="hugo" href="https://gohugo.io/" target="_blank">hugo</a></li>
-        </ul>
-    </div>
 </div>
-<script src="https://www.learngfxprogramming.cf/js/all.min.js"></script>
 
-        </div>
-    </div>
 </div>
+</div>
+<script src="https://www.learngfxprogramming.cf/js/ui.js"></script>
 
 
 <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', '', 'auto');
-ga('send', 'pageview');
+  ga('create', 'UA-115000283-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 
+
+
+
+
 </body>
 </html>
+

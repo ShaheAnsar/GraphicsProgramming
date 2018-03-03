@@ -4,18 +4,18 @@ date: 2018-03-03T00:38:11+05:30
 draft: true
 ---
 # Understanding what an instance is
-In vulkan, the main object you'll be interacting with is an instance. The instance is similar to Open GL's context.
+In vulkan, the main object you'll be interacting with is an instance. The instance is similar to Open GL's concept of contexts.
 You can think of it as an object that holds details that tells vulkan that we're a vulkan application. In reality, it simply holds a bunch of state
-for the vulkan API. Creating is the first step to creating any vulkan application. You can pass a bunch of information, and we certainly will later down the road.
+for the vulkan API. Creating it is the first step to creating any vulkan application. You can pass a bunch of information, and we certainly will later down the road.
 But today, I'll be showing you how to create an instance.  
 
 
 __NOTE:__ You WILL not be seeing anything on screen until much later (since this is vulkan). Drawing on it will come even later.  
 
-# Getting to coding
+# Setting up the skeleton of the codebase
 Let's continue from the last article's barebones main.cpp file.  
 We want to keep the clutter to a minimum. So let's put three functions within the main function  
-```cpp`
+```cpp
 int main(void)
 {
 	Game::init();
@@ -26,7 +26,7 @@ int main(void)
 We want to keep the main game code in a separate namespace, so that we'll not clash in the future with other libraries (That isn't going to happen
 in this series, but if you want to evolve this into a game engine, starting here is a good idea). Now let's define them in file called `game.hpp`.
 I'm not going to be making a separate cpp file because the code will be fairly small.
-```cpp`
+```cpp
 namespace Game
 {
 	void init()
@@ -47,7 +47,7 @@ We can finally get to vulkan now. We'll keep that in another namespace called Gf
 
 	
 `src/gfx.hpp`
-```cpp`
+```cpp
 #define GLFW_VULKAN_INCLUDED //automatically loads all needed vulkan headers
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -64,7 +64,7 @@ namespace Gfx
 };
 ```
 `src/gfx.cpp`
-```cpp`
+```cpp
 #include "gfx.hpp"
 void Gfx::Renderer::init()
 {
@@ -76,13 +76,14 @@ void Gfx::Renderer::deinit()
 
 }
 ```
+# Actually coding
 Now let's talk about what will go inside the above two functions.  
 In the init function we want to initialize the instance. We also want to pass in some information about our game / game-engine to the instance's create function.
 In the deinit function, we'll have to destroy the data that's put into it.
 So let's get to it.  
 
 `Gfx::Renderer::init()`
-```cpp`
+```cpp
 VkApplicationInfo appInfo = {};
 appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 appInfo.pApplicationName = "Name of our Application";
@@ -101,7 +102,7 @@ will have the `sType` field. It, of course stands for `structure Type`. You __mu
 Now onto actually creating the instance-  
 
 `Gfx::Renderer::init()`
-```cpp`
+```cpp
 ... //Created the appInfo
 VkInstanceCreateInfo instanceCreateInfo = {};
 instanceCreateinfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -131,8 +132,44 @@ Extensions on the other hand let us add extra functionality to the core Vulkan l
 For example, since Vulkan is platform agnostic, we need an extension to access the handler to
 the surface of a window.  
 All of that though is for the next tutorial, where we'll enable a few extensions and layers.  
+
+Now let's fill up the `Gfx::Renderer::deinit()` function, which contains a single line of code-  
+`Gfx::Renderer::deinit()`
+```cpp
+vkDestroyInstance(_instance, nullptr);// Also keep in mind that all functions that destroy objects also take
+                                      // a parameter to an allocator. We don't need one, so it's a nullptr
+```  
+
+Now let's set everything up.  
+We want to include all the needed headers and call the proper functions.  
+`main.cpp`  
+```cpp
+#include "game.hpp"
+
+```
+`game.hpp`
+```cpp
+#include "gfx.hpp
+...
+	Renderer renderer;
+	init()
+	{
+		renderer.init();
+	}
+	...
+	deinit()
+	{
+		renderer.deinit();
+	}
+```
+And that's it. We're almost done now. All that's left is modifying the `meson.build` file.
+
 # Modifying meson.build  
-
-
-
+Open up the meson.build file and change the following variables like this -  
+```ruby`
+src = ['src/main.cpp', 'src/gfx.cpp']
+```
+Now, go to the build directory and run `ninja`. You shouldn't get any errors and have a compiled project
+that does nothing for now. Hey, at least we have progress.  
+On my next post (which will be pretty big, I think) we'll talk about layers and extensions.  
 Till then, ciao

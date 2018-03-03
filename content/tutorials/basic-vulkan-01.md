@@ -61,18 +61,20 @@ I'll explain how to set up a meson build system for this project, however, and t
 First make a directory wherever you want for this project.
 Now create a meson.build file in root directory of the project.  
 
-```ruby`
+```ruby
 project('NAME OF PROJECT', 'cpp')
 src = ['src/main.cpp']
 include_dirs  = ['include/']
 deps = [dependency('vulkan'), dependency('glfw3')]
-executable('NAME OF BUILT EXECUTABLE', src, dependencies: deps, include_directories: include_directories(include_dirs))
+executable('NAME OF BUILT EXECUTABLE', src,
+	dependencies: deps, 
+	include_directories: include_directories(include_dirs))
 ```
 
 This is a very barebones build file, but that's all we need for this series
 
 We'll also create a very basic main.cpp file in the `src/` directory to test if everythin is setup fine-  
-```cpp`
+```cpp
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
@@ -82,7 +84,7 @@ int main(void)
 }
 ```
 Now in the source directory, type the following-  
-```
+```sh
 meson build
 cd build
 ninja

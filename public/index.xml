@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Copyright 2018 M. Shahe Ansar</copyright>
-    <lastBuildDate>Fri, 02 Mar 2018 12:54:05 +0530</lastBuildDate>
+    <lastBuildDate>Sat, 03 Mar 2018 08:33:15 +0530</lastBuildDate>
     
 	<atom:link href="https://www.learngfxprogramming.cf/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tutorials</title>
+      <link>https://www.learngfxprogramming.cf/tutorials/</link>
+      <pubDate>Sat, 03 Mar 2018 08:33:15 +0530</pubDate>
+      
+      <guid>https://www.learngfxprogramming.cf/tutorials/</guid>
+      <description> Vulkan Basics Series  Vulkan Basics 01 Vulkan Basics 02  </description>
+    </item>
     
     <item>
       <title>Basic Vulkan Programming - 01</title>
